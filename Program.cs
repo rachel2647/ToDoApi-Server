@@ -16,11 +16,16 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseCors("MyCors");
-if (app.Environment.IsDevelopment())
+
+app.UseSwagger(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.SerializeAsV2 = true;
+});
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
